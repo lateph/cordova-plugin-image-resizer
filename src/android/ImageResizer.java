@@ -299,9 +299,13 @@ public class ImageResizer extends CordovaPlugin {
     private int[] calculateAspectRatio(int origWidth, int origHeight) {
         int newWidth = width;
         int newHeight = height;
-
+        
+        if (newWidth > origWidth && newHeight > origHeight) {
+            newWidth = origWidth;
+            newHeight = origHeight;
+        }
         // If no new width or height were specified return the original bitmap
-        if (newWidth <= 0 && newHeight <= 0) {
+        else if (newWidth <= 0 && newHeight <= 0) {
             newWidth = origWidth;
             newHeight = origHeight;
         }
